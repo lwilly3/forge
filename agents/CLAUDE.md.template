@@ -1,0 +1,43 @@
+# CLAUDE.md — <NOM_DU_PROJET>
+
+> Point d'entrée agent. Budget 160 lignes max (hook automatique). Le détail
+> vit dans les skills (.claude/skills/), docs/reference/ et les README de
+> modules — les charger uniquement quand la tâche le requiert.
+
+## Projet
+
+<UNE PHRASE : quoi, pour qui.>
+
+| Clé | Valeur |
+|-----|--------|
+| Version | <manifeste — source de vérité> |
+| Branches | develop → déploie AUTO le serveur TEST ; main = PROD (merge seulement) |
+| Port dev | <port> |
+| API backend | <url> (repo séparé : <chemin> — NE PAS MODIFIER sans contexte) |
+
+**Stack** : <liste courte>.
+
+## Architecture
+
+<10 lignes max : arborescence + les 2-3 règles de frontières CRITIQUES.>
+
+## Règles CRITIQUES
+
+- <typecheck/tests avant commit>
+- <les 3-5 pièges spécifiques au projet — un par ligne, avec le POURQUOI en 5 mots>
+
+## Workflows → Skills
+
+| Tâche | Skill |
+|-------|-------|
+| Committer / release | `release-version` |
+| Backend / migrations | `backend-api-python` |
+| Module / routes / permissions | `frontend-modulaire` |
+| UI | `ui-design` |
+| Modifier CE fichier / skills / doc | `context-governance` |
+
+## Commandes
+
+```bash
+<dev> ; <typecheck> ; <build> ; <tests>
+```
