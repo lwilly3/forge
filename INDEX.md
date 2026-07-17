@@ -8,6 +8,7 @@
 - [dokploy-deploiement](playbooks/dokploy-deploiement.md) — branches=environnements, sondes de déploiement, tunnels DB lecture seule, diagnostic sans sudo
 - [repos-publics-secrets](playbooks/repos-publics-secrets.md) — hygiène des secrets : incidents réels (logs commités, token dans les logs httpx) et parades
 - [notifications-preferences](playbooks/notifications-preferences.md) — entonnoir unique notify() : catalogue de types, préférences utilisateur, verrous admin, multi-canaux
+- [ged-fondations](playbooks/ged-fondations.md) — GED interne : identité immuable, résolveur unique, corbeille obligatoire, audit append-only, stockage abstrait, revue croisée
 - [memoire-ia-rag](playbooks/memoire-ia-rag.md) — pile mémoire d'entreprise : ingestion, recherche hybride, conscience temporelle, boucle qualité de l'agent
 
 ## Skills (processus, versions génériques)
