@@ -1,13 +1,13 @@
 ---
 name: explain-diff
-description: Expliquer pédagogiquement un diff/branche/PR à son auteur, façon Distill — 4 sections dans l'ordre strict — Contexte (le modèle mental AVANT le changement), Intuition avant les détails (objectif + exemple concret, sans code), Figures (Mermaid/tableaux seulement s'ils apportent), Lecture littéraire du code (fichiers dans l'ordre narratif, prose avant code). Déclencheurs — « explique ce diff », « explique cette branche », « qu'est-ce que change cette PR », « aide-moi à comprendre ce qui a changé ». Ce n'est PAS une revue de code (pas de bugs, pas de sévérités) — pour ça utiliser /code-review. Livrable = message de chat en français, sauvegarde optionnelle dans docs/.
+description: Expliquer pédagogiquement un diff/branche/PR à son auteur, façon Distill — 4 sections dans l'ordre strict — Contexte (le modèle mental AVANT le changement), Intuition avant les détails (objectif + exemple concret, sans code), Figures (Mermaid/tableaux seulement s'ils apportent), Lecture littéraire du code (fichiers dans l'ordre narratif, prose avant code). Déclencheurs — « explique ce diff », « explique cette branche », « qu'est-ce que change cette PR », « aide-moi à comprendre ce qui a changé ». Ce n'est PAS une revue de code (pas de bugs, pas de sévérités) — pour ça utiliser /code-review. Livrable = message de chat en français + rapport écrit SYSTÉMATIQUEMENT dans docs/walkthroughs/ du repo.
 ---
 
 # explain-diff
 
 `git diff` est un mauvais professeur : il montre les hunks dans l'ordre du système de fichiers et suppose que le lecteur connaît déjà le système. Ce skill produit un **document d'enseignement** sur un diff, destiné à l'auteur du changement (ou à quelqu'un qui l'apprend). **En français.**
 
-**Ce que ce n'est pas** : pas une revue (aucun ⭐/⚠️/P0, aucune suggestion de correction — rediriger vers `/code-review` si on veut des bugs). Pas un commentaire de PR — livrable chat uniquement (+ sauvegarde durable optionnelle).
+**Ce que ce n'est pas** : pas une revue (aucun ⭐/⚠️/P0, aucune suggestion de correction — rediriger vers `/code-review` si on veut des bugs). Pas un commentaire de PR — livrable chat + rapport dans docs/, jamais posté sur la plateforme de PR.
 
 La colonne vertébrale est fixe — ne jamais sauter, fusionner ni réordonner :
 
@@ -98,7 +98,9 @@ Puis les 4 sections (`## Contexte`, `## Intuition`, `## Figures`, `## Lecture du
 
 Rien d'autre — pas de résumé, pas de suggestions de suite.
 
-**Sauvegarde durable (optionnelle)** : si demandée, écrire `docs/walkthroughs/<slug>.md` dans le repo — **sans committer** (committer suit le protocole `release-version` du projet, uniquement à la demande). Terminer le chat par `📖 Aussi sauvegardé : <chemin>`.
+**Sauvegarde durable (SYSTÉMATIQUE)** : écrire le même corps dans `docs/walkthroughs/<slug>.md` du repo, avec un frontmatter d'instantané (`title`, `type: diff-walkthrough`, `status: snapshot`, `generated-by: explain-diff`, cible + SHA, `date`) et une note d'en-tête précisant que c'est un instantané pédagogique, pas la doc de référence. Committer selon le protocole du projet (commit `docs(walkthroughs)`, aucun bump) sauf refus explicite. Terminer le chat par `📖 Aussi sauvegardé : <chemin>`.
+
+**Export Word (sur demande)** : générer via le skill `docx` un `.docx` dans `docs/walkthroughs/exports/<slug>.docx` — sommaire cliquable, diagrammes Mermaid retranscrits en listes pas-à-pas (pas de rendu Mermaid dans Word), en-tête/pied de page. L'envoyer à l'utilisateur (SendUserFile).
 
 ## Cas limites
 
