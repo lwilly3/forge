@@ -110,7 +110,7 @@ Rien d'autre — pas de résumé, pas de suggestions de suite.
 
 **Sauvegarde durable (SYSTÉMATIQUE)** : écrire le même corps dans `docs/topics/<slug>.md` du repo, avec un frontmatter d'instantané (`title`, `type: topic-walkthrough`, `status: snapshot`, `generated-by: explain-topic`, SHAs, `date`) et une note d'en-tête précisant que c'est un instantané pédagogique, pas la doc de référence. Committer selon le protocole du projet (commit `docs(topics)`, aucun bump) sauf refus explicite. Terminer le chat par `📚 Aussi sauvegardé : <chemin>`.
 
-**Export Word (sur demande)** : générer via le skill `docx` un `.docx` dans `docs/topics/exports/<slug>.docx` — sommaire cliquable, diagrammes Mermaid retranscrits en listes pas-à-pas (pas de rendu Mermaid dans Word), en-tête/pied de page. L'envoyer à l'utilisateur (SendUserFile).
+**Export Word (sur demande)** : générer un `.docx` dans `docs/topics/exports/<slug>.docx` avec le template `forge/templates/word-report-design/` (page de garde, sommaire, encadrés, glossaire en tableau — lire son README) ; diagrammes Mermaid retranscrits en listes pas-à-pas. L'envoyer à l'utilisateur (SendUserFile).
 
 ## Cas limites
 

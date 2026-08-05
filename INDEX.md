@@ -30,4 +30,4 @@
 - [hooks/check-context-budget.sh](agents/hooks/check-context-budget.sh) — le garde-fou automatique du budget de contexte
 
 ## Templates (code)
-- (vide — règle du second usage : le premier projet qui réclame un squelette le fait naître ici)
+- [word-report-design](templates/word-report-design/README.md) — rapports Word soignés en docx-js (page de garde, sommaire, encadrés, tableaux zébrés) — né du second usage 2026-08-05 (exports des walkthroughs explain-topic)
