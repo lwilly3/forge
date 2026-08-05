@@ -11,7 +11,13 @@
 - [ged-fondations](playbooks/ged-fondations.md) — GED interne : identité immuable, résolveur unique, corbeille obligatoire, audit append-only, stockage abstrait, revue croisée
 - [memoire-ia-rag](playbooks/memoire-ia-rag.md) — pile mémoire d'entreprise : ingestion, recherche hybride, conscience temporelle, boucle qualité de l'agent
 
-## Skills (processus, versions génériques)
+## Skills — guide junior + installation : [skills/README.md](skills/README.md)
+
+### Vivants (source de vérité ICI, symlinkés vers ~/.claude/skills via `skills/install.sh`)
+- [explain-diff](skills/explain-diff/README.md) — leçon pédagogique sur un diff/branche/PR : contexte → intuition → figures → lecture du code
+- [explain-topic](skills/explain-topic/README.md) — leçon pédagogique sur un sujet existant du codebase (sous-système, mécanisme, module)
+
+### Génériques (bases à copier-spécialiser dans chaque projet)
 - [release-version](skills/release-version/SKILL.md) — protocole commit/release semver + CHANGELOG
 - [backend-api-python](skills/backend-api-python/SKILL.md) — FastAPI/SQLAlchemy/Alembic : venv, imports, migrations, checklist pré-push
 - [frontend-modulaire](skills/frontend-modulaire/SKILL.md) — architecture à modules : registre, frontières d'import, permissions à 4 niveaux
