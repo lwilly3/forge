@@ -184,7 +184,7 @@ const tocTitle = (accent = PAL.accent) => new Paragraph({
 });
 
 // --- Document complet ---
-function buildDoc({ headerText, children }) {
+function buildDoc({ headerText, children, footerText = 'RadioManager' }) {
   return new Document({
     styles: {
       default: { document: { run: { font: 'Arial', size: 22 } } },
@@ -230,7 +230,7 @@ function buildDoc({ headerText, children }) {
           children: [new Paragraph({
             alignment: AlignmentType.CENTER,
             children: [
-              new TextRun({ text: 'RadioManager · ', size: 17, color: '999999' }),
+              new TextRun({ text: `${footerText} · `, size: 17, color: '999999' }),
               new TextRun({ children: ['Page ', PageNumber.CURRENT, ' / ', PageNumber.TOTAL_PAGES], size: 17, color: '999999' }),
             ],
           })],
