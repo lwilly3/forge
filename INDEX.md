@@ -25,9 +25,12 @@
 - [ui-design](skills/ui-design/SKILL.md) — grammaire visuelle d'une plateforme opérationnelle
 
 ## Agents (processus)
+- [cooperation-claude-codex](agents/cooperation-claude-codex.md) — deux agents IA sur le même repo : AGENTS.md, skills pointeurs, hooks partagés, mémoire via git, règles git de survie
 - [CLAUDE.md.template](agents/CLAUDE.md.template) — point d'entrée type d'un projet (< 160 lignes)
+- [AGENTS.md.template](agents/AGENTS.md.template) — point d'entrée type pour Codex : extraction opérationnelle de CLAUDE.md + section multi-agents
 - [memoire-conventions](agents/memoire-conventions.md) — mémoire de session persistante : format, index, synchronisation repo
 - [hooks/check-context-budget.sh](agents/hooks/check-context-budget.sh) — le garde-fou automatique du budget de contexte
+- [hooks/sync-memory.sh](agents/hooks/sync-memory.sh) — sauvegarde auto de la mémoire agent dans le repo + restauration sur nouvelle machine
 
 ## Templates (code)
 - [word-report-design](templates/word-report-design/README.md) — rapports Word soignés en docx-js (page de garde, sommaire, encadrés, tableaux zébrés) — né du second usage 2026-08-05 (exports des walkthroughs explain-topic)

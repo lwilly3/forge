@@ -1,0 +1,77 @@
+# AGENTS.md — <NOM_DU_PROJET>
+
+> Point d'entrée projet pour Codex et les agents compatibles.
+> `CLAUDE.md` reste la source la plus complète ; ce fichier en extrait les
+> règles opérationnelles et signale quoi relire selon la tâche.
+
+## Lecture au démarrage
+
+1. Lire ce fichier.
+2. Lire `CLAUDE.md` pour les règles détaillées, surtout avant une modification importante.
+3. Lire `.claude/memory/MEMORY.md` si la tâche touche à <sujets portés par la mémoire>.
+4. Lire le `README.md` du module/dossier concerné avant de le modifier.
+5. Pour <tâche récurrente 1>, lire `.claude/skills/<skill-1>/SKILL.md`.
+6. Pour <tâche récurrente 2>, lire `.claude/skills/<skill-2>/SKILL.md`.
+7. Pour committer/pousser/release, lire `.claude/skills/release-version/SKILL.md`.
+8. Avant de modifier `CLAUDE.md`, `AGENTS.md`, un skill ou la doc de référence,
+   lire `.claude/skills/context-governance/SKILL.md` et suivre sa procédure.
+
+> Les skills canoniques vivent dans `.claude/skills/` ; les fichiers
+> `.codex/skills/*` sont des pointeurs. Ne jamais en créer de copie.
+
+## Projet
+
+- Nom : <NOM_DU_PROJET>.
+- Stack : <liste courte>.
+- Branche de travail : `<branche>`. ATTENTION : <effet d'un push — ex. déploiement auto TEST>.
+- `main` = PRODUCTION. Jamais de push direct : promotion par merge après validation.
+- Commandes : voir `CLAUDE.md` (dev, typecheck, build, tests).
+- Repos liés : <chemins + NE PAS MODIFIER sans contexte>.
+
+## Variables d'environnement
+
+Fichier local attendu : `.env.local` (jamais commité). Clés : <liste des noms,
+sans valeur>. Ne jamais afficher un secret dans les réponses ou les logs.
+
+## Architecture (frontières CRITIQUES)
+
+- <règle de frontière 1 — ex. shared/ n'importe jamais depuis modules/>
+- <règle de frontière 2>
+- <point d'enregistrement unique — ex. src/config/modules.ts>
+
+## Versioning et commits
+
+Quand l'utilisateur demande de committer ou pousser :
+0. Vérifier la branche (`<branche>` uniquement).
+1. Inspecter `git diff` et `git diff --staged`.
+2. Commit conventionnel (`feat(scope):`, `fix(scope):`, `docs(scope):`).
+3. Ne pas bumper pour un commit ordinaire ; pour une release, appliquer
+   `.claude/skills/release-version/SKILL.md`.
+
+### Travail multi-agents (CRITIQUE)
+
+Plusieurs agents (Claude et Codex) travaillent ce repo en parallèle — parfois
+depuis le MÊME arbre de travail sur la même machine. Règles de survie :
+
+0. **Commandes git NON INTERACTIVES uniquement.** Jamais de pager ni d'éditeur :
+   le repo est configuré `core.pager=cat` (ne pas le retirer) ; en cas de doute,
+   préfixer `git --no-pager …` et utiliser `git -c core.editor=true …` pour les
+   commandes qui ouvrent un éditeur (rebase --continue, merge). Un `git log`
+   qui ouvre `less` bloque l'agent indéfiniment.
+0bis. **Même arbre de travail = un seul agent à la fois.** Avant de commencer,
+   vérifier `git status` : si des changements stagés/non commités d'un autre
+   agent sont présents, NE PAS les écraser ni les committer aveuglément —
+   demander à l'utilisateur qui doit finir.
+1. `git fetch` + inspecter `HEAD..origin/<branche>` AVANT toute séquence de
+   travail, et re-fetch juste avant chaque push.
+2. Après TOUT rebase — même « réussi sans conflit » — relancer le typecheck
+   (<commande>) AVANT de pousser : deux corrections identiques faites en
+   parallèle peuvent fusionner en doublon silencieux.
+3. Pousser rapidement les travaux terminés ; ne jamais laisser des dizaines de
+   fichiers non commités.
+4. Contexte partagé : lire `.claude/memory/two-machine-workflow.md` si présent.
+
+## Vérification avant livraison
+
+- <typecheck/tests : commande exacte>
+- <vérification UI/serveur si applicable>

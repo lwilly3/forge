@@ -25,6 +25,11 @@ Après chaque jalon : mettre à jour le fichier thématique concerné (remplacer
 pas empiler), puis copier la mémoire dans le repo (`.claude/memory/`) et
 committer — la mémoire suit le projet, pas seulement la machine.
 
+Automatisation éprouvée : le hook [hooks/sync-memory.sh](hooks/sync-memory.sh)
+fait la copie à chaque écriture mémoire (`restore` pour l'autre sens sur une
+nouvelle machine) — branchement décrit dans
+[cooperation-claude-codex](cooperation-claude-codex.md).
+
 ## Sécurité
 
 JAMAIS de secret en mémoire : pointeurs uniquement.
