@@ -88,6 +88,7 @@ vrai dossier existant (il faut le supprimer soi-même d'abord).
 | `explain-diff` | Se faire expliquer pédagogiquement un diff / une branche / une PR | [README](explain-diff/README.md) |
 | `explain-topic` | Se faire enseigner un sujet existant du codebase (sous-système, mécanisme, module) | [README](explain-topic/README.md) |
 | `divi5-skill` | Générer des pages Divi 5 valides (JSON builder, tokens, presets) et les publier (Divi Connect ou REST WP). **Tiers** (divilove.com, v0.7.0) — provenance et règles de mise à jour : [PROVENANCE](divi5-skill/PROVENANCE.md) | [README](divi5-skill/README.md) |
+| `extra-skill` | Refonte de design sur le thème **Extra** (builder Divi legacy `et_pb_*`, category builder, tokens et_extra) — extrait du code réel + site pilote, règle « imiter, pas inventer » | [README](extra-skill/README.md) |
 
 ### Génériques (bases à copier-spécialiser dans chaque projet)
 

@@ -18,6 +18,7 @@
 - [explain-diff](skills/explain-diff/README.md) — leçon pédagogique sur un diff/branche/PR : contexte → intuition → figures → lecture du code
 - [explain-topic](skills/explain-topic/README.md) — leçon pédagogique sur un sujet existant du codebase (sous-système, mécanisme, module)
 - [divi5-skill](skills/divi5-skill/PROVENANCE.md) — (tiers, divilove.com v0.7.0) générer/publier des pages Divi 5.10 — adaptateur design du projet outillage agents↔WordPress
+- [extra-skill](skills/extra-skill/README.md) — refonte de design sur thème Extra (Divi legacy) : format et_pb_*, category builder, tokens et_extra, modules Posts — extrait du code réel 4.27.5 + corpus du site pilote
 
 ### Génériques (bases à copier-spécialiser dans chaque projet)
 - [release-version](skills/release-version/SKILL.md) — protocole commit/release semver + CHANGELOG

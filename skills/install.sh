@@ -7,7 +7,7 @@ FORGE_SKILLS="$(cd "$(dirname "$0")" && pwd)"
 TARGET="${HOME}/.claude/skills"
 
 # Liste des skills vivants (source de vérité = forge/skills/<nom>)
-LIVE_SKILLS=(explain-diff explain-topic divi5-skill)
+LIVE_SKILLS=(explain-diff explain-topic divi5-skill extra-skill)
 
 mkdir -p "$TARGET"
 
