@@ -3,6 +3,11 @@
 > Né le 2026-08-13, validé le même soir sur le staging d'une radio FM :
 > brouillon n° 2013 créé via la chaîne Claude → MCP → Abilities API.
 > Le mécanisme d'ensemble : [playbooks/wordpress-staging-agent-mcp.md](../../playbooks/wordpress-staging-agent-mcp.md).
+>
+> ⚠️ **Source de vérité du plugin VIVANT : repo dédié
+> `github.com/lwilly3/audace-agent-abilities-wp`** (privé — README, CHANGELOG,
+> docs/ABILITIES.md, ROADMAP). Cette copie-ci est le TEMPLATE générique figé,
+> à copier-adapter pour une autre marque (règle habituelle des templates forge).
 
 ## Ce que ça fait
 
