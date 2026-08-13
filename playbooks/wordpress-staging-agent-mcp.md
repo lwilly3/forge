@@ -77,6 +77,13 @@ le vocabulaire métier vient d'un plugin d'abilities à écrire par nous.
   `HTTP_AUTHORIZATION` ; la vérifier si 401 persistant.
 - **MCP streamable HTTP** : après `initialize`, chaque appel exige le header
   `Mcp-Session-Id` renvoyé par la réponse d'initialize.
+- **Abilities API : rejets silencieux** — `wp_register_ability` hors de son hook
+  → NULL ; catégorie OBLIGATOIRE, déclarée sur `wp_abilities_api_categories_init`
+  avec `label` ET `description`. Quand WP_DEBUG est off, `_doing_it_wrong` ne
+  s'affiche pas et son filtre n'est même pas appliqué : pour voir les raisons,
+  écouter `add_action('doing_it_wrong_run', ...)` dans un `wp eval`.
+- **Exécuter une ability via MCP** : outil `mcp-adapter-execute-ability`,
+  arguments `{"ability_name": "ns/nom", "parameters": {...}}`.
 
 ## Sécurité (non négociable)
 
@@ -94,10 +101,17 @@ Après chaque nouveau site branché ou piège rencontré : compléter la liste d
 pièges, dater la vérification en tête, committer. Le script template évolue en
 même temps — c'est LUI la référence exécutable, ce document explique le pourquoi.
 
+## Brique 4 — le vocabulaire : plugin d'abilities (livré 2026-08-13)
+
+Template : `templates/wordpress-agent-abilities/` (v0.1 validée en réel :
+discover → site-info → create-draft, brouillon créé par un agent de bout en
+bout). Principes gravés dedans : permission minimale par ability, écriture =
+brouillon forcé (jamais de publication), pas de création silencieuse,
+annotations honnêtes.
+
 ## Suite du mécanisme (à documenter quand livré)
 
-- Plugin « Agent Abilities » : abilities métier exposées à `discover`
-  (site-info, brouillons, médias, design) — le vocabulaire des agents.
+- Abilities suivantes : médias, mise à jour de brouillon, design system.
 - Skill éditorial par marque (règles rédactionnelles, SEO, identité).
 - Promotion staging → prod : ré-exécution délibérée des gestes validés,
   jamais de synchronisation automatique.

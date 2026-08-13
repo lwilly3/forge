@@ -37,3 +37,4 @@
 ## Templates (code)
 - [word-report-design](templates/word-report-design/README.md) — rapports Word soignés en docx-js (page de garde, sommaire, encadrés, tableaux zébrés) — né du second usage 2026-08-05 (exports des walkthroughs explain-topic)
 - [wordpress-staging-clone](templates/wordpress-staging-clone/README.md) — script éprouvé de clonage WordPress prod→staging (rsync, verrous anti-écrasement de prod, neutralisation e-mails) — second usage anticipé : chaque site du mécanisme agents↔WordPress
+- [wordpress-agent-abilities](templates/wordpress-agent-abilities/README.md) — plugin d'abilities pour agents IA (site-info, articles, brouillon forcé jamais publié) — validé en réel le 2026-08-13, pièges d'enregistrement documentés
