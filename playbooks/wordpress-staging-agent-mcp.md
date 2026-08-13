@@ -46,6 +46,34 @@ le vocabulaire métier vient d'un plugin d'abilities à écrire par nous.
    "Authorization: Basic $(printf 'user:apppass' | base64)"` → vérifier
    `claude mcp list` = ✔ Connected. Outils visibles à la session suivante.
 
+## Variante : site NEUF designé de zéro (sans clonage)
+
+Cas le plus favorable — aucun legacy, pas d'Extra : partir directement sur
+**Divi 5** et le format structuré moderne. Le clonage (étapes 4-5) saute ;
+le reste de la checklist s'applique tel quel.
+
+1. Créer l'instance : sous-domaine Multisite OVH + module « WordPress 1-clic »
+   (le piège du clonage devient ici une fonctionnalité : WP vierge + base
+   auto-créée en minutes) — ou conteneur Dokploy si hors mutualisé.
+2. Installer le thème **Divi 5** (zip depuis le compte Elegant Themes) +
+   `mcp-adapter` + plugin agent-abilities (namespace re-brandé si autre marque)
+   + mu-plugin staging-guard tant que le site n'est pas lancé.
+3. Utilisateur agent + app password + `claude mcp add` (un serveur MCP par
+   site, convention de nom `wp-<site>`).
+4. **Design system D'ABORD** : traduire les travaux de design (maquettes
+   Claude/Codex, HTML, tokens) en variables globales Divi 5 (couleurs, typo,
+   espacements, presets) AVANT de construire la moindre page — ensuite chaque
+   page hérite du système. C'est le process gated du skill divi5-skill
+   (découverte → plan → approbation → build) ; publication via REST natif
+   (metas `_et_pb_use_builder` etc., cf. DIVI5-WORDPRESS.md du skill).
+5. Boucle : construire page par page en brouillon → captures desktop/mobile →
+   itération → validation humaine → publication délibérée.
+
+Différence de vocabulaire selon le thème : sur Extra les tokens vivent dans
+l'option `et_extra` ; sur Divi 5 dans les variables globales du builder →
+l'ability `get-design-tokens` devra router selon le thème détecté (prévu
+roadmap plugin v0.4).
+
 ## Pièges vérifiés (chacun a coûté une itération)
 
 - **Sous-domaine OVH ≠ dossier vide** : le module « WordPress 1-clic » peut avoir
