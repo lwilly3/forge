@@ -45,11 +45,28 @@ importantes :
 - Couleurs auto par catégorie : `has_auto_assign_category_color` — chaque
   catégorie peut avoir sa couleur (utilisée par les modules Posts).
 
-## §3 Sidebars et gabarits
+## §3 Sidebars et gabarits (sémantique VÉRIFIÉE dans admin.php)
 
 - Pages : gabarit par meta `_et_pb_page_layout` (full width / right sidebar / no sidebar).
-- Layouts : `_extra_sidebar` (`on/off`) + `_extra_sidebar_location` (`left/right`).
+- Layouts — DEUX metas au rôle précis (piège vécu) :
+  - **`_extra_sidebar_location`** = l'interrupteur : `''` (défaut global) | `right` |
+    `left` | **`none`** (pleine largeur). C'est LUI qui retire la classe body
+    `with_sidebar` et donne 100 % à la colonne principale.
+  - **`_extra_sidebar`** = QUELLE zone de widgets afficher (id de sidebar,
+    `''` = défaut). Y mettre `off` = id inexistant → sidebar vide mais la
+    largeur 67 % RESTE (le CSS dynamique `.with_sidebar .et_pb_extra_column_main
+    {width:100-sidebar_width%}` est généré par includes/customizer.php).
+- Ne PAS combattre cette largeur au CSS custom : poser `none` dans la meta.
 - Les sidebars sont des zones de widgets classiques (`wp widget list <sidebar>`).
+
+## §3bis Habillage global : réglages natifs AVANT CSS custom
+
+Les couleurs de navigation/tendances ont des clés natives dans `et_extra`
+(primary_nav_*, secondary_nav_*, secondary_nav_trending_*, accent_color…) :
+les modifier via `wp eval update_option` (après sauvegarde JSON de l'option)
+donne un résultat propre, éditable au Customizer par les humains ensuite.
+Le CSS custom global (`et_extra['extra_custom_css']`) sert au reste
+(footer Theme Builder, éléments sans réglage natif).
 
 ## §4 Où vit le code du thème (pour approfondir)
 
