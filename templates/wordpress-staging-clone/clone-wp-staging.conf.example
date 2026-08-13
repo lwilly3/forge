@@ -1,0 +1,38 @@
+# Configuration du clonage WordPress prod → staging.
+# Copier en clone-wp-staging.conf (JAMAIS committé : mots de passe possibles),
+# remplir avec les valeurs du site — les relever via `clone-wp-staging.sh --inspect`
+# et l'OVH Manager. Les valeurs réelles par site vivent dans la mémoire d'agent.
+
+# --- Accès SSH : utilisateur DÉDIÉ au staging (OVH Manager → FTP-SSH) ---
+# Jamais le login principal : un compte par staging, révocable indépendamment.
+SSH_TARGET="LOGIN-staging@ssh.clusterNNN.hosting.ovh.net"
+
+# --- Chemins sur l'hébergement (le vrai home est du type /homez.NNN/LOGIN) ---
+SRC_DIR="/homez.NNN/LOGIN/dossier-prod"       # WordPress de production
+DST_DIR="/homez.NNN/LOGIN/dossier-staging"    # dossier du sous-domaine staging
+
+# Autorise le remplacement du contenu du dossier de staging (refusé si le
+# chemin ne contient pas « staging » — garde-fou anti-effacement).
+ALLOW_WIPE_DST="no"
+
+# --- URLs (exactement comme en base : avec ou sans www) ---
+SRC_URL="https://www.exemple.com"
+DST_URL="https://www.staging.exemple.com"
+
+# --- Base MySQL du staging (OVH Manager → Bases de données ; mot de passe
+#     alphanumérique uniquement, contrainte OVH) ---
+DST_DB_NAME="basestaging"
+DST_DB_USER="basestaging"
+DST_DB_PASS=""                                # laisser vide : demandé à la saisie
+DST_DB_HOST="basestaging.mysql.db"
+
+# --- Compte admin dédié au staging (facultatif) ---
+ADMIN_USER="staging-admin"
+ADMIN_PASS=""
+ADMIN_EMAIL="vous@exemple.com"
+
+# --- Extensions désactivées sur le staging (séparées par des espaces) ---
+# Tout ce qui parle au monde extérieur : newsletters (spammerait les vrais
+# abonnés), sauvegardes cloud (polluerait les vraies archives), analytics
+# (fausserait les vraies stats). Adapter à la liste `wp plugin list` du site.
+DISABLE_PLUGINS="newsletter updraftplus google-site-kit"

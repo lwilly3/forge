@@ -10,12 +10,14 @@
 - [notifications-preferences](playbooks/notifications-preferences.md) — entonnoir unique notify() : catalogue de types, préférences utilisateur, verrous admin, multi-canaux
 - [ged-fondations](playbooks/ged-fondations.md) — GED interne : identité immuable, résolveur unique, corbeille obligatoire, audit append-only, stockage abstrait, revue croisée
 - [memoire-ia-rag](playbooks/memoire-ia-rag.md) — pile mémoire d'entreprise : ingestion, recherche hybride, conscience temporelle, boucle qualité de l'agent
+- [wordpress-staging-agent-mcp](playbooks/wordpress-staging-agent-mcp.md) — brancher des agents IA sur un WordPress : staging cloné + neutralisé, mcp-adapter officiel, app passwords, pièges OVH/MySQL 8.4/Divi vérifiés
 
 ## Skills — guide junior + installation : [skills/README.md](skills/README.md)
 
 ### Vivants (source de vérité ICI, symlinkés vers ~/.claude/skills via `skills/install.sh`)
 - [explain-diff](skills/explain-diff/README.md) — leçon pédagogique sur un diff/branche/PR : contexte → intuition → figures → lecture du code
 - [explain-topic](skills/explain-topic/README.md) — leçon pédagogique sur un sujet existant du codebase (sous-système, mécanisme, module)
+- [divi5-skill](skills/divi5-skill/PROVENANCE.md) — (tiers, divilove.com v0.7.0) générer/publier des pages Divi 5.10 — adaptateur design du projet outillage agents↔WordPress
 
 ### Génériques (bases à copier-spécialiser dans chaque projet)
 - [release-version](skills/release-version/SKILL.md) — protocole commit/release semver + CHANGELOG
@@ -34,3 +36,4 @@
 
 ## Templates (code)
 - [word-report-design](templates/word-report-design/README.md) — rapports Word soignés en docx-js (page de garde, sommaire, encadrés, tableaux zébrés) — né du second usage 2026-08-05 (exports des walkthroughs explain-topic)
+- [wordpress-staging-clone](templates/wordpress-staging-clone/README.md) — script éprouvé de clonage WordPress prod→staging (rsync, verrous anti-écrasement de prod, neutralisation e-mails) — second usage anticipé : chaque site du mécanisme agents↔WordPress
