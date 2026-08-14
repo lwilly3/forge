@@ -10,10 +10,23 @@ Le site expose un serveur MCP (plugin officiel `mcp-adapter`) :
 - Endpoint : `https://www.staging.radioaudace.com/wp-json/mcp/mcp-adapter-default-server`
 - Auth : `Authorization: Basic <base64(agent-audace:app-password)>` — app password
   WordPress du compte `agent-audace`, révocable dans wp-admin → profil.
-- **Claude Code** : serveur `wp-staging-radioaudace` (déjà dans la config projet).
-- **Codex** : `[mcp_servers.wp-staging-radioaudace]` dans `~/.codex/config.toml`,
-  via `npx mcp-remote <endpoint> --header "Authorization: Basic …" --transport http-only`
-  (pont stdio→HTTP ; déjà configuré sur cette machine).
+- **Le secret ne va JAMAIS dans des arguments de commande** (`codex mcp list`
+  les affiche !) ni dans un repo : il vit dans la variable d'environnement
+  `WP_STAGING_MCP_AUTH` (`~/.zshenv`, mode 600) au format `Basic <base64>`.
+- **Claude Code** : serveur `wp-staging-radioaudace` (config projet, header stocké).
+- **Codex** : MCP **Streamable HTTP natif** (pas de pont mcp-remote) :
+
+  ```toml
+  [mcp_servers.wp-staging-radioaudace]
+  url = "https://www.staging.radioaudace.com/wp-json/mcp/mcp-adapter-default-server"
+  env_http_headers = { Authorization = "WP_STAGING_MCP_AUTH" }
+  startup_timeout_sec = 60.0
+  default_tools_approval_mode = "writes"
+  ```
+
+  Redémarrer Codex après modification. **Première connexion = lecture seule** :
+  vérifier le serveur dans /mcp → discover → `site-info` (confirmer
+  `is_staging: true`) → `list-design-surfaces`. Aucune écriture au premier test.
 
 ## Les 3 méta-outils MCP
 
@@ -38,17 +51,24 @@ Tout passe par le mcp-adapter :
 | `duplicate-surface-as-draft` | écriture | clone toute surface en brouillon « (Refonte) … » — le bac à sable |
 | `update-surface-layout` | écriture | remplace structure+CSS d'un BROUILLON uniquement ; valide l'équilibre des shortcodes ; purge et-cache |
 
-Référence complète (schémas, exemples) : `docs/ABILITIES.md` du repo du plugin.
+Référence complète (schémas, exemples) :
+`/Users/happi/App/audace-agent-abilities-wp/docs/ABILITIES.md`
+(github.com/lwilly3/audace-agent-abilities-wp, privé).
 
 ## Le cycle d'écriture (OBLIGATOIRE)
 
-`update-surface-layout` **refuse toute cible publiée**. Pour modifier une surface
-en ligne sur le staging :
+`update-surface-layout` **refuse toute cible publiée**. Deux cycles selon l'enjeu :
 
-1. Sauvegarde si nécessaire : `duplicate-surface-as-draft` (l'original reste intact).
-2. Passer la cible en brouillon (WP-CLI, voir ci-dessous).
-3. Écrire via l'ability (elle purge les caches Divi).
-4. Republier (WP-CLI), re-purger si besoin.
+**Surface publiée / visible (préféré — zéro interruption)** :
+1. `duplicate-surface-as-draft` → travailler EXCLUSIVEMENT sur la copie.
+2. Écrire/itérer/prévisualiser sur la copie (l'original reste en ligne, intact).
+3. Après validation explicite : bascule (publier la copie, drafter l'original —
+   pour une une : déplacer le flag `_extra_layout_home`).
+
+**Retouche rapide sur le staging (fenêtre hors-ligne acceptée)** :
+draft → écrire via l'ability (elle purge et-cache) → republier → re-purger.
+⚠️ Pendant ce cycle l'URL de la surface renvoie 404 — ne l'utiliser que sur
+des surfaces non critiques du staging.
 
 ## Accès serveur (SSH + WP-CLI)
 
