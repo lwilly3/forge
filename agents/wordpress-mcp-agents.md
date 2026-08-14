@@ -27,6 +27,13 @@ Le site expose un serveur MCP (plugin officiel `mcp-adapter`) :
   Redémarrer Codex après modification. **Première connexion = lecture seule** :
   vérifier le serveur dans /mcp → discover → `site-info` (confirmer
   `is_staging: true`) → `list-design-surfaces`. Aucune écriture au premier test.
+- **Environnement macOS** : le CLI (terminal zsh) hérite de `~/.zshenv` ; une
+  app lancée depuis le Finder non → `launchctl setenv WP_STAGING_MCP_AUTH "…"`
+  (posé pour la session ; à re-poser après reboot, ou lancer depuis le terminal).
+- **Annotations vérifiées (2026-08-14)** : le mcp-adapter déclare
+  `execute-ability` avec `readOnlyHint:false, destructiveHint:true` (discover
+  et get-info : read-only) → le mode d'approbation `writes` de Codex couvre
+  correctement le méta-outil, sans règle supplémentaire.
 
 ## Les 3 méta-outils MCP
 
