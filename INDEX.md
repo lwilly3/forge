@@ -29,6 +29,7 @@
 
 ## Agents (processus)
 - [cooperation-claude-codex](agents/cooperation-claude-codex.md) — deux agents IA sur le même repo : AGENTS.md, skills pointeurs, hooks partagés, mémoire via git, règles git de survie
+- [wordpress-mcp-agents](agents/wordpress-mcp-agents.md) — mode d'emploi opératoire du MCP WordPress pour Claude ET Codex : connexion, abilities audace/*, cycle d'écriture draft-only, pièges ModSec/Extra, interdits
 - [CLAUDE.md.template](agents/CLAUDE.md.template) — point d'entrée type d'un projet (< 160 lignes)
 - [AGENTS.md.template](agents/AGENTS.md.template) — point d'entrée type pour Codex : extraction opérationnelle de CLAUDE.md + section multi-agents
 - [memoire-conventions](agents/memoire-conventions.md) — mémoire de session persistante : format, index, synchronisation repo
