@@ -24,6 +24,28 @@ exacts, accents compris), nombre d'articles, affichage des métadonnées
 (auteur/date/commentaires), et exploitation de la couleur de catégorie
 (`has_auto_assign_category_color` dans et_extra).
 
+### Registre des articles déjà affichés
+
+**Validé sur Extra 4.27.5, staging Radio Audace, 2026-08-17.** Les modules
+Posts partagent le tableau global `$extra_displayed_post_ids`. Le rendu de la
+classe de base dans `includes/modules.php` :
+
+1. initialise le registre lorsqu'il est vide ;
+2. le transmet à `post__not_in` quand l'attribut
+   `ignore_displayed_posts` est actif ;
+3. fusionne les identifiants de la requête du module dans le registre après
+   son rendu.
+
+Un composant PHP exécuté après les modules Posts peut donc consulter ce tableau
+pour produire un flux complémentaire sans doublons. Sur Radio Audace, un bloc
+branché sur `get_footer` a exclu les vingt destinations déjà présentes et
+rendu six articles distincts avant le footer.
+
+Limites : ce registre est propre à Extra, dépend de l'ordre de rendu et doit
+être revalidé après changement de version ou de thème. Le hook `get_footer`
+n'est pertinent que pour un composant transversal ; une modification de la
+composition du builder suit toujours le cycle copie-brouillon-bascule.
+
 ## §2 Modules Divi standard (~50) — pour les pages
 
 Slugs disponibles (shortcode manager du builder embarqué) — les plus utiles en
